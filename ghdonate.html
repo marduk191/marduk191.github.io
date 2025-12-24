@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Development</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            background: #0d1117;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #c9d1d9;
+        }
+
+        .donation-container {
+            background: #161b22;
+            border-radius: 6px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 0 0 1px #30363d;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            color: #f0f6fc;
+            font-size: 22px;
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+
+        .header p {
+            color: #8b949e;
+            font-size: 12px;
+        }
+
+        .wallet-section {
+            background: #0d1117;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #30363d;
+        }
+
+        .wallet-label {
+            color: #f0f6fc;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .network-badge {
+            background: #21262d;
+            color: #58a6ff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 9px;
+            border: 1px solid #30363d;
+        }
+
+        .wallet-address {
+            background: #0d1117;
+            color: #c9d1d9;
+            padding: 8px 10px;
+            border-radius: 6px;
+            font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+            font-size: 11px;
+            word-break: break-all;
+            margin-bottom: 8px;
+            border: 1px solid #30363d;
+        }
+
+        .wallet-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .copy-btn {
+            flex: 1;
+            background: #238636;
+            color: #ffffff;
+            border: 1px solid rgba(240, 246, 252, 0.1);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: #2ea043;
+            box-shadow: 0 0 0 3px rgba(35, 134, 54, 0.4);
+        }
+
+        .copy-btn:active {
+            background: #2ea043;
+        }
+
+        .copy-btn.copied {
+            background: #1f6feb;
+        }
+
+        .qr-toggle-btn {
+            background: #21262d;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .qr-toggle-btn:hover {
+            background: #30363d;
+            border-color: #8b949e;
+        }
+
+        .qr-toggle-btn.active {
+            background: #1f6feb;
+            color: #ffffff;
+            border-color: #1f6feb;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px 0 rgba(49, 49, 93, 0.4);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .copy-btn.copied {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+
+        .qr-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .qr-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .qr-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        #qrcode {
+            display: flex;
+            justify-content: center;
+        }
+
+        .supported-networks {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .supported-networks h3 {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .network-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .network-tag {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mini-qr {
+            margin-top: 10px;
+            text-align: center;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .mini-qr.show {
+            max-height: 250px;
+            opacity: 1;
+            margin-bottom: 8px;
+        }
+
+        .mini-qr canvas {
+            margin: 0 auto;
+            display: block;
+        }
+
+        .network-info {
+            display: none;
+        }
+
+        .section-divider {
+            text-align: center;
+            margin: 15px 0 12px;
+            position: relative;
+        }
+
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: #21262d;
+        }
+
+        .section-divider::before {
+            left: 0;
+        }
+
+        .section-divider::after {
+            right: 0;
+        }
+
+        .section-divider span {
+            color: #8b949e;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 10px;
+            background: transparent;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .payment-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 6px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid #30363d;
+            background: #0d1117;
+            text-align: center;
+        }
+
+        .payment-btn:hover {
+            border-color: #8b949e;
+            transform: translateY(-1px);
+        }
+
+        .payment-icon {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-size: 18px;
+            flex-shrink: 0;
+            background: #21262d;
+            border: 1px solid #30363d;
+        }
+
+        .payment-info {
+            flex: 1;
+        }
+
+        .payment-name {
+            color: #f0f6fc;
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+
+        .payment-desc {
+            color: #8b949e;
+            font-size: 9px;
+            line-height: 1.2;
+        }
+
+        /* Ko-fi Button */
+        .kofi-btn:hover {
+            background: #161b22;
+        }
+
+        .kofi-btn .payment-icon {
+            background: #da2f47;
+            color: #ffffff;
+            border-color: #da2f47;
+        }
+
+        /* CashApp Button */
+        .cashapp-btn:hover {
+            background: #161b22;
+        }
+
+        .cashapp-btn .payment-icon {
+            background: #00d632;
+            color: #ffffff;
+            font-weight: bold;
+            border-color: #00d632;
+        }
+
+        /* PayPal Button */
+        .paypal-btn:hover {
+            background: #161b22;
+        }
+
+        .paypal-btn .payment-icon {
+            background: #0070ba;
+            color: #ffffff;
+            border-color: #0070ba;
+        }
+
+        @media (max-width: 480px) {
+            .donation-container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .header p {
+                font-size: 12px;
+            }
+
+            .wallet-address {
+                font-size: 10px;
+                padding: 8px;
+            }
+
+            .wallet-actions {
+                flex-direction: row;
+            }
+
+            .copy-btn, .qr-toggle-btn {
+                font-size: 11px;
+                padding: 8px 12px;
+            }
+
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-btn {
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 12px;
+                padding: 12px;
+            }
+
+            .payment-info {
+                text-align: left;
+            }
+
+            .payment-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+
+            .payment-name {
+                font-size: 13px;
+            }
+
+            .payment-desc {
+                font-size: 10px;
+            }
+
+            .section-divider span {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="donation-container">
+        <div class="header">
+            <h1>☕ Support Development</h1>
+            <p>Help keep this project going with a crypto donation</p>
+        </div>
+
+        <!-- Ethereum/EVM Section -->
+        <div class="wallet-section">
+            <div class="wallet-label">
+                🔷 Ethereum & EVM Chains
+                <span class="network-badge">Multi-Chain</span>
+            </div>
+            <div class="wallet-address" id="ethAddress">
+                0xcF0A994206A4839a72EDd9c58C06B0306B16513F
+            </div>
+            <div class="wallet-actions">
+                <button class="copy-btn" id="ethCopyBtn">
+                    📋 Copy
+                </button>
+                <button class="qr-toggle-btn" id="ethQRToggle">
+                    📱 QR
+                </button>
+            </div>
+            <div class="mini-qr" id="ethQR"></div>
+        </div>
+
+        <!-- Bitcoin Section -->
+        <div class="wallet-section">
+            <div class="wallet-label">
+                ₿ Bitcoin
+                <span class="network-badge">BTC</span>
+            </div>
+            <div class="wallet-address" id="btcAddress">
+                bc1qsdrch0gctdh34lr787c548y8akxlzyyafkmw36
+            </div>
+            <div class="wallet-actions">
+                <button class="copy-btn" id="btcCopyBtn">
+                    📋 Copy
+                </button>
+                <button class="qr-toggle-btn" id="btcQRToggle">
+                    📱 QR
+                </button>
+            </div>
+            <div class="mini-qr" id="btcQR"></div>
+        </div>
+
+        <!-- Solana Section -->
+        <div class="wallet-section">
+            <div class="wallet-label">
+                ◎ Solana
+                <span class="network-badge">SOL</span>
+            </div>
+            <div class="wallet-address" id="solAddress">
+                BNQifBWv9ZfFcbY23uhqGCfNGZtsuwsbym2dqno4Qck9
+            </div>
+            <div class="wallet-actions">
+                <button class="copy-btn" id="solCopyBtn">
+                    📋 Copy
+                </button>
+                <button class="qr-toggle-btn" id="solQRToggle">
+                    📱 QR
+                </button>
+            </div>
+            <div class="mini-qr" id="solQR"></div>
+        </div>
+
+        <div class="section-divider">
+            <span>Or use traditional payment methods</span>
+        </div>
+
+        <!-- Traditional Payment Methods -->
+        <div class="payment-methods">
+            <!-- Ko-fi -->
+            <a href="https://ko-fi.com/marduk191" target="_blank" class="payment-btn kofi-btn">
+                <div class="payment-icon">☕</div>
+                <div class="payment-info">
+                    <div class="payment-name">Ko-fi</div>
+                    <div class="payment-desc">Buy me a coffee</div>
+                </div>
+            </a>
+
+            <!-- CashApp -->
+            <a href="https://cash.app/$marduk191" target="_blank" class="payment-btn cashapp-btn">
+                <div class="payment-icon">$</div>
+                <div class="payment-info">
+                    <div class="payment-name">Cash App</div>
+                    <div class="payment-desc">$marduk191</div>
+                </div>
+            </a>
+
+            <!-- PayPal -->
+            <a href="https://paypal.me/marduk191" target="_blank" class="payment-btn paypal-btn">
+                <div class="payment-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/>
+                    </svg>
+                </div>
+                <div class="payment-info">
+                    <div class="payment-name">PayPal</div>
+                    <div class="payment-desc">paypal.me/marduk191</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <script>
+        // Configuration - Replace these with your actual wallet addresses
+        const WALLETS = {
+            eth: '0xcF0A994206A4839a72EDd9c58C06B0306B16513F',
+            btc: 'bc1qsdrch0gctdh34lr787c548y8akxlzyyafkmw36',
+            sol: 'BNQifBWv9ZfFcbY23uhqGCfNGZtsuwsbym2dqno4Qck9'
+        };
+        
+        // Generate QR Codes for each wallet (larger for readability)
+        new QRCode(document.getElementById('ethQR'), {
+            text: WALLETS.eth,
+            width: 180,
+            height: 180,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        new QRCode(document.getElementById('btcQR'), {
+            text: WALLETS.btc,
+            width: 180,
+            height: 180,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        new QRCode(document.getElementById('solQR'), {
+            text: WALLETS.sol,
+            width: 180,
+            height: 180,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        // QR Toggle functionality
+        function setupQRToggle(toggleBtnId, qrElementId) {
+            const toggleBtn = document.getElementById(toggleBtnId);
+            const qrElement = document.getElementById(qrElementId);
+            
+            toggleBtn.addEventListener('click', () => {
+                qrElement.classList.toggle('show');
+                toggleBtn.classList.toggle('active');
+                
+                // Update button text
+                if (qrElement.classList.contains('show')) {
+                    toggleBtn.textContent = '✕ Hide';
+                } else {
+                    toggleBtn.textContent = '📱 QR';
+                }
+            });
+        }
+
+        // Setup QR toggles
+        setupQRToggle('ethQRToggle', 'ethQR');
+        setupQRToggle('btcQRToggle', 'btcQR');
+        setupQRToggle('solQRToggle', 'solQR');
+
+        // Copy to clipboard functionality
+        function setupCopyButton(btnId, address) {
+            const btn = document.getElementById(btnId);
+            
+            btn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(address);
+                    
+                    // Visual feedback
+                    const originalText = btn.textContent;
+                    btn.textContent = '✓ Copied!';
+                    btn.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.classList.remove('copied');
+                    }, 2000);
+                } catch (err) {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = address;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    
+                    const originalText = btn.textContent;
+                    btn.textContent = '✓ Copied!';
+                    btn.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.classList.remove('copied');
+                    }, 2000);
+                }
+            });
+        }
+
+        // Setup copy buttons for all wallets
+        setupCopyButton('ethCopyBtn', WALLETS.eth);
+        setupCopyButton('btcCopyBtn', WALLETS.btc);
+        setupCopyButton('solCopyBtn', WALLETS.sol);
+    </script>
+</body>
+</html>
