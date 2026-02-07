@@ -1,0 +1,11 @@
+- title: "Home"
+  url: "/"
+
+- title: "Blog"
+  url: "/blog/"
+
+- title: "Categories"
+  url: "/categories/"
+
+- title: "About"
+  url: "/about/"

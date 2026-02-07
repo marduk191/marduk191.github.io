@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<div class="home">
+  {{ content }}
+
+  <section class="posts-section">
+    <h2>Latest Posts</h2>
+    <div class="post-list">
+      {% for post in site.posts limit:5 %}
+        <article class="post-card">
+          {% if post.image %}
+            <img src="{{ post.image }}" alt="{{ post.title }}" class="post-image">
+          {% endif %}
+          <div class="post-content">
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+            {% if post.category %}
+              <span class="post-category">{{ post.category }}</span>
+            {% endif %}
+            <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+    <a href="{{ '/blog/' | relative_url }}" class="view-all">View All Posts →</a>
+  </section>
+</div>

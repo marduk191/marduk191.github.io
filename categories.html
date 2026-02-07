@@ -1,0 +1,16 @@
+---
+layout: default
+title: Categories
+permalink: /categories/
+---
+
+<h1>Categories</h1>
+
+<div class="categories-list">
+  {% for category in site.categories %}
+    <a href="{{ '/category/' | append: category[0] | slugify | append: '/' | relative_url }}" class="category-card">
+      <h3>{{ category[0] }}</h3>
+      <span class="count">{{ category[1].size }} posts</span>
+    </a>
+  {% endfor %}
+</div>
