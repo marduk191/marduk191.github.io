@@ -8,9 +8,11 @@ permalink: /categories/
 
 <div class="categories-list">
   {% for tag in site.tags %}
-    <a href="{{ '/category/' | append: tag[0] | slugify | append: '/' | relative_url }}" class="category-card">
-      <h3>{{ tag[0] }}</h3>
-      <span class="count">{{ tag[1].size }} posts</span>
+    {% assign tag_name = tag | first %}
+    {% assign posts = tag | last %}
+    <a href="{{ '/category/' | append: tag_name | slugify | append: '/' | relative_url }}" class="category-card">
+      <h3>{{ tag_name }}</h3>
+      <span class="count">{{ posts.size }} posts</span>
     </a>
   {% endfor %}
 </div>
