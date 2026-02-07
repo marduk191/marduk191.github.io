@@ -11,14 +11,10 @@
             "id": "cab75cd1563185f6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_posts/2026-02-07-sample-post-for-preview 1.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "2026-02-07-sample-post-for-preview 1"
+              "title": "New tab"
             }
           }
         ]
@@ -94,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_posts/2026-02-07-sample-post-for-preview 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 2026-02-07-sample-post-for-preview 1"
+              "title": "Backlinks"
             }
           },
           {
@@ -113,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "_posts/2026-02-07-sample-post-for-preview 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from 2026-02-07-sample-post-for-preview 1"
+              "title": "Outgoing links"
             }
           },
           {
@@ -156,13 +150,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_posts/2026-02-07-sample-post-for-preview 1.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 2026-02-07-sample-post-for-preview 1"
+              "title": "Outline"
             }
           }
         ]
@@ -185,11 +178,11 @@
   },
   "active": "cab75cd1563185f6",
   "lastOpenFiles": [
+    "_posts/2026-02-07-sample-post-for-preview 1.md",
     "_layouts/category.html.tmp.14172.1770439687216",
     "blog.html.tmp.14172.1770439673526",
     "_posts/2025-02-06-sample-post-for-preview.md",
     "_posts/2026-02-07-sample-post-for-preview.md",
-    "_posts/2026-02-07-sample-post-for-preview 1.md",
     "_posts/2026-07-07-stuff.md",
     "_templates/Post Template.md",
     "README.md",
