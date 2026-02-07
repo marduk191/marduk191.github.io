@@ -7,10 +7,12 @@ permalink: /categories/
 <h1>Categories</h1>
 
 <div class="categories-list">
-  {% for category in site.categories %}
-    <a href="{{ '/category/' | append: category[0] | slugify | append: '/' | relative_url }}" class="category-card">
-      <h3>{{ category[0] }}</h3>
-      <span class="count">{{ category[1].size }} posts</span>
+  {% for cat in site.categories %}
+    {% assign cat_name = cat | first %}
+    {% assign cat_posts = cat | last %}
+    <a href="{{ '/category/' | append: cat_name | slugify | append: '/' | relative_url }}" class="category-card">
+      <h3>{{ cat_name }}</h3>
+      <span class="count">{{ cat_posts.size }} posts</span>
     </a>
   {% endfor %}
 </div>
