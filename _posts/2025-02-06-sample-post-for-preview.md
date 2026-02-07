@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Sample Post for Preview"
+title: Sample Post for Preview
 date: 2025-02-06
-category: test
-tags: [preview, theme]
+tags:
+  - theme
 ---
 
 ## Welcome

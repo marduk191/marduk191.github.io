@@ -2,9 +2,8 @@
 layout: post
 title: "{{title}}"
 date: {{date}}
-category:
-tags: []
-image:
+tags:
+  -
 ---
 
 Write your content here...

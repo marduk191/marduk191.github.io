@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2025-02-06-sample-post-for-preview.md",
+                "file": "_templates/Post Template.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2025-02-06-sample-post-for-preview"
+              "title": "Post Template"
             }
           }
         ]
@@ -94,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "_templates/Post Template.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for Post Template"
             }
           },
           {
@@ -112,11 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "_templates/Post Template.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from Post Template"
             }
           },
           {
@@ -154,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_categories/test.md",
+                "file": "_templates/Post Template.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of test"
+              "title": "Outline of Post Template"
             }
           }
         ]
@@ -181,16 +183,17 @@
       "bases:Create new base": false
     }
   },
-  "active": "00c5663ecd13e5ef",
+  "active": "cab75cd1563185f6",
   "lastOpenFiles": [
+    "_posts/2025-02-06-sample-post-for-preview-1.md",
+    "_posts/2025-02-06-sample-post-for-preview.md",
+    "_categories/test.md",
     "categories.html.tmp.3424.1770440853163",
     "_layouts/category.html.tmp.3424.1770440812606",
-    "_posts/2025-02-06-sample-post-for-preview-1.md",
     "_config.yml.tmp.3424.1770440383133",
     "_tags/theme.md",
     "_tags/preview.md",
     "_tags",
-    "_posts/2025-02-06-sample-post-for-preview.md",
     "_posts/2025-02-06-sample-post-for-preview 1.md",
     "_posts/2026-02-07-sample-post-for-preview 1.md",
     "_layouts/category.html.tmp.14172.1770439687216",
