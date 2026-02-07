@@ -7,13 +7,11 @@ baseurl: ""
 
 # Build settings
 markdown: kramdown
-permalink: /:categories/:title/
-paginate: 10
-paginate_path: "/blog/page:num/"
+permalink: /:title/
 
 # Collections
 collections:
-  categories:
+  tags:
     output: true
     permalink: /category/:name/
 
@@ -29,14 +27,20 @@ defaults:
       type: "pages"
     values:
       layout: "page"
+  - scope:
+      path: ""
+      type: "tags"
+    values:
+      layout: "category"
 
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-paginate
 
 exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
   - node_modules
+  - preview.html
+  - _templates
