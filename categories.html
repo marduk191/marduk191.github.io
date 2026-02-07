@@ -10,9 +10,31 @@ permalink: /categories/
   {% for tag in site.tags %}
     {% assign tag_name = tag | first %}
     {% assign posts = tag | last %}
-    <a href="{{ '/category/' | append: tag_name | slugify | append: '/' | relative_url }}" class="category-card">
+    <a href="#{{ tag_name | slugify }}" class="category-card">
       <h3>{{ tag_name }}</h3>
       <span class="count">{{ posts.size }} posts</span>
     </a>
   {% endfor %}
 </div>
+
+{% for tag in site.tags %}
+  {% assign tag_name = tag | first %}
+  {% assign posts = tag | last %}
+  <section id="{{ tag_name | slugify }}" class="category-section">
+    <h2>{{ tag_name }}</h2>
+    <div class="post-list">
+      {% for post in posts %}
+        <article class="post-card">
+          {% if post.image %}
+            <img src="{{ post.image }}" alt="{{ post.title }}" class="post-image">
+          {% endif %}
+          <div class="post-content">
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            <time>{{ post.date | date: "%B %d, %Y" }}</time>
+            <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endfor %}

@@ -9,12 +9,6 @@ baseurl: ""
 markdown: kramdown
 permalink: /:title/
 
-# Collections
-collections:
-  tags:
-    output: true
-    permalink: /category/:name/
-
 # Defaults
 defaults:
   - scope:
@@ -27,11 +21,6 @@ defaults:
       type: "pages"
     values:
       layout: "page"
-  - scope:
-      path: ""
-      type: "tags"
-    values:
-      layout: "category"
 
 plugins:
   - jekyll-feed
